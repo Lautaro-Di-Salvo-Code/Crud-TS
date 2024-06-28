@@ -3,10 +3,12 @@ import { database } from "../../Firebase/FirebaseModule";
 import { useState, useEffect } from "react";
 import { FormType } from "../../TypesInterfaces";
 import { MdDelete } from "react-icons/md";
+import Loader from "../../Loader/Loader";
 const ReadTaks = () => {
   
   
   const [tasks, setTasks] = useState<FormType[] | null>(null);
+  const [loader, setloader] = useState(false)
   
   const RefColeccion = collection(database, "coleccion1");
   
@@ -25,12 +27,17 @@ const ReadTaks = () => {
   };
 
   useEffect(() => {
+    setloader(true)
     ReadTasks();
+    setloader(false)
   }, []);
 
   return (
     <main className="ShowTasks">
-      {tasks?.map((e) => (
+      {/* {
+        loader  && !tasks ?   : null
+      } */}
+      {tasks? tasks.map((e) => (
         <div key={e?.id}>
           <h3>{e?.title}</h3>
           <b>{e?.hour}</b>
@@ -40,7 +47,9 @@ const ReadTaks = () => {
             </button>
           </section>
         </div>
-      ))}
+      )) 
+      : <Loader/>
+      }
     </main>
   );
 };
