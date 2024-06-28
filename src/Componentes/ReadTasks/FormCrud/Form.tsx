@@ -4,11 +4,14 @@ import { FormType } from "../../../TypesInterfaces";
 import { database } from "../../../Firebase/FirebaseModule";
 import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { FaEye, FaEyeSlash, FaPenAlt } from "react-icons/fa";
-import "./styles.css";
+import { Toaster, toast } from "sonner";
+import * as yup from "yup";
+import ReadTaks from "../ReadTaks";
+import "../Styles/styles.css";
 import "../../../Styles/index.css";
 const Form = () => {
+  const Tostada = () => toast.success("Bien!");
   const [form, setForm] = useState(false);
 
   const ActiveForm = () => {
@@ -17,17 +20,18 @@ const Form = () => {
   const DesactiveForm = () => {
     setForm(false);
   };
+
+  
   const schema = yup
-    .object({
-      title: yup.string().required(),
-      
-    })
-    .required();
-
+  .object({
+    title: yup.string().required(),
+  })
+  .required();
+  
   //   type FormData = yup.InferType<typeof schema>;
-
-  const RefColeccion = collection(database, "primeraColeccion");
-
+  
+  const RefColeccion = collection(database, "coleccion1");
+  
   const {
     register,
     handleSubmit,
@@ -35,18 +39,24 @@ const Form = () => {
   } = useForm<FormType>({
     resolver: yupResolver(schema),
   });
-
+  
+  const Hora = Date.now()
   const PostToDatabase = async (datos: FormType) => {
-    await addDoc(RefColeccion, { ...datos });
+    await addDoc(RefColeccion, {
+      title: datos.title,
+      hour: datos.hour,
+      id: Hora.toString()
+    });
   };
 
   return (
     <>
+      <Toaster richColors />
       {form === false ? (
         <div className="Div_btnForm">
           <button onClick={ActiveForm}>
             <FaPenAlt />
-            <FaEyeSlash />
+            <FaEye />
           </button>
         </div>
       ) : (
@@ -54,24 +64,21 @@ const Form = () => {
           <button onClick={DesactiveForm}>
             <FaPenAlt />
 
-            <FaEye />
+            <FaEyeSlash />
           </button>
         </div>
       )}
 
       <form
         onSubmit={handleSubmit(PostToDatabase)}
-        className={`${form && "OffNavbar"}`}
+        className={`${form === false && "OffNavbar"}`}
       >
         <input type="text" placeholder="titulo tarea" {...register("title")} />
-        <b className="errorTitle">{errors?.title?.message}</b>
-        <input
-          type="datetime-local"
-          placeholder="fecha y hora"
-          {...register("fecha")}
-        />
-        <input type="submit" value="Enviar" />
+        <b className="errorTitle">{errors?.title?.message && "Rellenar "}</b>
+        <input type="time" placeholder="hora" {...register("hour")} />
+        <input onClick={Tostada} type="submit" value="Enviar" />
       </form>
+      <ReadTaks />
     </>
   );
 };
