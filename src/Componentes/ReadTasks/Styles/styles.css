@@ -41,5 +41,18 @@
       filter: drop-shadow(1px 1px 1px #000000);
       color: rgb(224, 213, 215);
     }
+    b{
+      color: #5243c6;
+    }
+  }
+}
+.btnDelete{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  button{
+    cursor: pointer;
+    
   }
 }
