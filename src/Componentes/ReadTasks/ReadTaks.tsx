@@ -18,10 +18,10 @@ const ReadTaks = () => {
   }, []);
 
   return (
-    <main>
+    <main className="ShowTasks">
       {tasks?.map((e) => (
         <div key={e?.id}>
-          <h2>{e?.title}</h2>
+          <h3>{e?.title}</h3>
           <b>{e?.hour}</b>
         </div>
       ))}
