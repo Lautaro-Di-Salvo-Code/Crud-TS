@@ -3,9 +3,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import { CgLogOut } from "react-icons/cg";
-import { auth } from "../Firebase/FirebaseModule";
-import Form from "./ReadTasks/FormCrud/Form";
-import { useState } from "react";
+import { auth } from "../../Firebase/FirebaseModule";
+import Form from "../ReadTasks/FormCrud/Form";
 
 const Posteos = () => {
   const [user] = useAuthState(auth);
