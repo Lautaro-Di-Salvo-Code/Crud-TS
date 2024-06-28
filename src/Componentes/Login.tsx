@@ -5,9 +5,9 @@ import { Inputs } from "../TypesInterfaces/TypesInterfaces";
 import Loader from "../Loader/Loader";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import "../Styles/index.css";
-// import axios from "axios";
 import LoginGoogle from "./Login/LoginGoogle";
+import "../Styles/index.css";
+import "./Login/Styles/style.css"
 
 const LoginComponent = ({ setUser, user }: any) => {
   

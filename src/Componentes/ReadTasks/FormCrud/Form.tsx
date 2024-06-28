@@ -20,6 +20,7 @@ const Form = () => {
   const schema = yup
     .object({
       title: yup.string().required(),
+      
     })
     .required();
 

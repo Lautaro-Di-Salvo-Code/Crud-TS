@@ -1,3 +1,17 @@
 .errorTitle{
     color: red;
 }
+.OffNavbar {
+    display: none;
+  }
+  .Div_btnForm {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+  }

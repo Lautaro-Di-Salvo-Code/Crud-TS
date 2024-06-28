@@ -1,0 +1,36 @@
+.navbar {
+    background-color: #333;
+    padding: 10px 20px;
+  }
+  
+  .navbar-left,
+  .navbar-right {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .navbar-left {
+    p {
+      color: white;
+      margin: 0;
+    }
+  }
+  
+  .navbar-center {
+    flex-grow: 1; /* Ocupa el espacio restante */
+  }
+  
+  
+  
+  .img {
+    width: 50px; /* Ajusta el tamaño de la imagen según tus necesidades */
+    border-radius: 100%;
+    height: auto;
+    transition: all 0.5s ease-in-out;
+    &:hover {
+      width: 70px; /* Ajusta el tamaño de la imagen según tus necesidades */
+      transition: all 0.5s ease-in-out;
+    }
+  }
