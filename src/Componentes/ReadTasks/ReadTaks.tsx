@@ -8,7 +8,6 @@ const ReadTaks = () => {
   
   
   const [tasks, setTasks] = useState<FormType[] | null>(null);
-  const [loader, setloader] = useState(false)
   
   const RefColeccion = collection(database, "coleccion1");
   
@@ -27,16 +26,11 @@ const ReadTaks = () => {
   };
 
   useEffect(() => {
-    setloader(true)
     ReadTasks();
-    setloader(false)
   }, []);
 
   return (
     <main className="ShowTasks">
-      {/* {
-        loader  && !tasks ?   : null
-      } */}
       {tasks? tasks.map((e) => (
         <div key={e?.id}>
           <h3>{e?.title}</h3>

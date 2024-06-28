@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 // import { useNavigate } from "react-router-dom";
 import { Inputs } from "../TypesInterfaces/TypesInterfaces";
-import Loader from "../Loader/Loader";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import LoginGoogle from "./Login/LoginGoogle";
@@ -12,7 +10,6 @@ import "./Login/Styles/style.css"
 const LoginComponent = ({ setUser, user }: any) => {
   
 
-  const [firstt, setfirstt] = useState(false);
 
     const LogoutUser = () => {
     setUser(null);
@@ -30,7 +27,7 @@ const LoginComponent = ({ setUser, user }: any) => {
 
   return (
     <>
-      {!firstt ? (
+      
         <form onSubmit={handleSubmit(onsubmit)} action="">
           <div className="email">
             <label htmlFor="email">email</label>
@@ -52,9 +49,7 @@ const LoginComponent = ({ setUser, user }: any) => {
 
           <LoginGoogle />
         </form>
-      ) : (
-        <Loader />
-      )}
+      
     </>
   );
 };

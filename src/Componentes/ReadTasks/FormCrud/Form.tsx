@@ -25,6 +25,9 @@ const Form = () => {
   const schema = yup
   .object({
     title: yup.string().required(),
+    hour: yup.string().required(),
+    id: yup.string().required(),
+
   })
   .required();
   
