@@ -5,6 +5,9 @@
 body {
   margin: 0;
 }
+html{
+  scrollbar-width: thin;
+}
 /* Home */
 .Main_home {
   max-width: 900px;

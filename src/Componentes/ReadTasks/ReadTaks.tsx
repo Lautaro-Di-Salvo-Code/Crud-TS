@@ -2,7 +2,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { database } from "../../Firebase/FirebaseModule";
 import { useState, useEffect } from "react";
 import { FormType } from "../../TypesInterfaces";
-
+import styled from "styled-components";
+import { MdDelete } from "react-icons/md";
 const ReadTaks = () => {
   const [tasks, setTasks] = useState<FormType[] | null>(null);
 
@@ -23,6 +24,11 @@ const ReadTaks = () => {
         <div key={e?.id}>
           <h3>{e?.title}</h3>
           <b>{e?.hour}</b>
+          <section className="btnDelete">
+            <button>
+              <MdDelete />
+            </button>
+          </section>
         </div>
       ))}
     </main>
