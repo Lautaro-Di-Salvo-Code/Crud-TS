@@ -5,7 +5,7 @@ export type Inputs = {
 
 export interface FormType{
   title: string,
-  hour: number
+  hour: string
   id: string
 }
 
