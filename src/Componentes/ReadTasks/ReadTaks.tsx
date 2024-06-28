@@ -1,17 +1,27 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { database } from "../../Firebase/FirebaseModule";
 import { useState, useEffect } from "react";
 import { FormType } from "../../TypesInterfaces";
-import styled from "styled-components";
 import { MdDelete } from "react-icons/md";
 const ReadTaks = () => {
+  
+  
   const [tasks, setTasks] = useState<FormType[] | null>(null);
-
+  
   const RefColeccion = collection(database, "coleccion1");
-
+  
   const ReadTasks = async () => {
     const datos = await getDocs(RefColeccion);
     setTasks(datos.docs.map((e) => ({ ...e.data(), id: e.id })) as FormType[]);
+  };
+  const deleteDocument = async ( id: string ) => {
+    const collectioN = "coleccion1"
+    try {
+      await deleteDoc(doc(database, collectioN, id));
+
+    } catch (error) {
+      console.error("Error eliminando documento: ", error);
+    }
   };
 
   useEffect(() => {
@@ -25,7 +35,7 @@ const ReadTaks = () => {
           <h3>{e?.title}</h3>
           <b>{e?.hour}</b>
           <section className="btnDelete">
-            <button>
+            <button onClick={()=> deleteDocument(e.id)}>
               <MdDelete />
             </button>
           </section>
